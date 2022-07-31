@@ -9,8 +9,6 @@ import {
 const router = express.Router();
 export default router;
 
-router.use(express.json());
-
 router.post('/register', async (req, res) => {
     const data = req.body;
     const { response, ...rest } = await registerUser(data);
@@ -20,7 +18,6 @@ router.post('/register', async (req, res) => {
         case 0:
             return res.status(401).json({ error: rest.message });
         case 1:
-            console.log(rest);
             return res
                 .status(200)
                 .json({ token: rest.token, refreshToken: rest.refreshToken });
@@ -55,7 +52,7 @@ router.post('/token', async (req, res) => {
             { userId: user.userId },
             process.env.TOKEN_SECRET,
             {
-                expiresIn: '15s',
+                expiresIn: process.env.TOKEN_EXPIRATION_TIME,
             }
         );
         res.json({ token: token });

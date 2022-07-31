@@ -30,7 +30,7 @@ export async function registerUser(data) {
         },
         TOKEN_SECRET,
         {
-            expiresIn: '15s',
+            expiresIn: process.env.TOKEN_EXPIRATION_TIME,
         }
     );
     const refreshToken = jwt.sign(
@@ -56,7 +56,7 @@ export async function loginWithCredentials(data) {
         },
         process.env.TOKEN_SECRET,
         {
-            expiresIn: '10s',
+            expiresIn: process.env.TOKEN_EXPIRATION_TIME,
         }
     );
     const refreshToken = jwt.sign(
@@ -70,7 +70,6 @@ export async function loginWithCredentials(data) {
         .save()
         .catch(err => err);
     await user.save().catch(err => err);
-    console.log(user._id);
     return { token, refreshToken };
 }
 

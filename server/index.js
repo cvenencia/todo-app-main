@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { connect } from './db/mongo.js';
 import login from './routes/auth.js';
+import todo from './routes/todo.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/user', login);
+app.use('/todo', todo);
 
 connect();
 app.listen(5000);
