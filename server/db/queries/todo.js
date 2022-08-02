@@ -7,11 +7,8 @@ export async function getUserTodos(userId, filter = {}) {
     return todos;
 }
 
-export async function createTodo(userId, content) {
-    const todo = new Todo({
-        userId,
-        content,
-    });
+export async function createTodo(data) {
+    const todo = new Todo(data);
     const { errors } = await todo.save().catch(err => err);
     return errors ? false : true;
 }

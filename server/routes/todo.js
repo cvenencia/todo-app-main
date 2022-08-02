@@ -11,7 +11,7 @@ const router = express.Router();
 export default router;
 
 router.get('/', verifyToken, async (req, res) => {
-    const filters = req.body;
+    const filters = JSON.parse(req.headers.filters);
     const todos = await getUserTodos(req.userId, filters);
     res.status(200).json(todos);
 });
@@ -22,7 +22,7 @@ router.post('/', verifyToken, async (req, res) => {
 
     if (!content) return res.sendStatus(401);
 
-    const response = await createTodo(userId, content);
+    const response = await createTodo({ userId, ...req.body });
     return response ? res.sendStatus(201) : res.sendStatus(401);
 });
 
