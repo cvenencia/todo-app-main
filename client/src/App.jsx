@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import { sendToken } from './services/api';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Todos from './pages/Todos';
+import Register from './pages/Register';
 
 export const AppContext = createContext(null);
 
@@ -33,7 +34,7 @@ export default function App() {
                     <Routes>
                         <Route exact path='/' element={<Todos />} />
                         <Route path='/login' element={<Login />} />
-                        {/* <Login /> */}
+                        <Route path='/register' element={<Register />} />
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>

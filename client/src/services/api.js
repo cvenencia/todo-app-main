@@ -1,3 +1,29 @@
+export async function doRegister(username, password) {
+    const API_URL = process.env.REACT_APP_API_URL;
+    const url = API_URL + '/user/register';
+    const data = {
+        mode: 'cors',
+        headers: new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+        }),
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+    };
+
+    const response = await fetch(url, data)
+        .then(response => {
+            return response.json();
+        })
+        .then(body => {
+            if (body.error) return body.error;
+            localStorage.token = body.token;
+            localStorage.refreshToken = body.refreshToken;
+            return true;
+        });
+    return response;
+}
+
 export async function doLogin(username, password) {
     const API_URL = process.env.REACT_APP_API_URL;
     const url = API_URL + '/user/login';

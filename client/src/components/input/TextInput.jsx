@@ -6,6 +6,7 @@ export default function TextInput({
     textInputRef,
     className,
     handleKeyPress,
+    type,
 }) {
     return (
         <input
@@ -13,6 +14,7 @@ export default function TextInput({
             ref={textInputRef}
             placeholder={placeholder}
             onKeyDownCapture={handleKeyPress}
+            type={type}
         >
             {children}
         </input>
