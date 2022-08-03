@@ -8,6 +8,7 @@ export async function connect() {
         })
         .catch(e => {
             console.log(e);
-            console.log('Error connecting with mongo');
+            console.log('Error connecting with mongo. Trying again...');
+            connect();
         });
 }
