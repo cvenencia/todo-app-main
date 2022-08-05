@@ -1,0 +1,105 @@
+.todo {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    align-items: center;
+    position: relative;
+
+    .todo__content-container {
+        display: flex;
+        gap: 1em;
+        align-items: center;
+    }
+
+    &__label {
+        --length: 1.5em;
+        display: inline-block;
+        width: var(--length);
+        height: var(--length);
+        cursor: pointer;
+        border: solid 2px grey;
+        border-radius: 50%;
+
+        &:hover {
+            border: solid 2px transparent;
+            background-image: linear-gradient(var(--bg-todos), var(--bg-todos)),
+                radial-gradient(
+                    circle at top left,
+                    rgb(115, 191, 244),
+                    rgb(165, 124, 242)
+                );
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+
+        input:checked + & {
+            background: linear-gradient(
+                140deg,
+                rgb(115, 191, 244),
+                rgb(165, 124, 242)
+            );
+            border: none;
+        }
+
+        img {
+            object-fit: none;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+
+        &--completed {
+            color: var(--clr-completed);
+        }
+    }
+
+    &__delete {
+        opacity: 0;
+        animation: delete-slide-out 200ms ease forwards;
+        pointer-events: none;
+    }
+
+    &:hover &__delete {
+        pointer-events: unset;
+
+        animation: delete-slide-in 200ms ease forwards;
+    }
+}
+
+@keyframes delete-slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(100%) scale(0);
+    }
+
+    100% {
+        --scale: 100%;
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        cursor: pointer;
+    }
+}
+
+@keyframes delete-slide-out {
+    100% {
+        --scale: 0;
+        opacity: 0;
+        transform: translateX(100%) scale(0);
+    }
+
+    1% {
+        --scale: 0;
+    }
+
+    0% {
+        --scale: 100%;
+        opacity: 1;
+        transform: translateX(0) scale(v1);
+        cursor: pointer;
+    }
+}

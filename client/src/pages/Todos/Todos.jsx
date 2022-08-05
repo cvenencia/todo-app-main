@@ -17,15 +17,14 @@ import {
 import Todo from '../../components/Todo';
 import TextInput from '../../components/input/TextInput';
 import Button from '../../components/buttons/Button';
-import sun from '../../assets/images/icon-sun.svg';
-// import moon from '../../assets/images/icon-moon.svg';
-import './theme.scss';
+import ToggleThemeButton from '../../components/buttons/ToggleTheme';
+import check from '../../assets/images/icon-check.svg';
 import './layout.scss';
 
 export default function Todos() {
-    const { login, toggleTheme } = useContext(AppContext);
+    const { login, setLogin, isDesktop } = useContext(AppContext);
     const [todos, setTodos] = useState();
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState(null);
     const newTodoRef = useRef();
     const [newTodoActive, setNewTodoActive] = useState(true);
     const navigate = useNavigate();
@@ -84,8 +83,15 @@ export default function Todos() {
         await getTodos();
     };
 
+    const handleLogout = () => {
+        setLogin('FAIL');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        navigate('/login');
+    };
+
     useEffect(() => {
-        if (login === 'FAIL') return navigate('/login');
+        if (login === 'FAIL') return navigate('/register');
 
         (async () => {
             return await getTodos();
@@ -102,30 +108,68 @@ export default function Todos() {
         );
     }, [todos]);
 
-    if (login === 'WAITING') return <h1>Loading</h1>;
+    if (login === 'WAITING' || login === 'FAIL') return <h1>Loading</h1>;
+
+    const FilterSelector = ({ className = '' }) => (
+        <div
+            onChange={handleFilter}
+            className={`todos__filter-selector ${className}`}
+        >
+            <input
+                type='radio'
+                name='todo-filter'
+                id='todo-filter-all'
+                defaultChecked={filter === null}
+                value={''}
+            />
+            <label htmlFor='todo-filter-all'>All</label>
+            <input
+                type='radio'
+                name='todo-filter'
+                id='todo-filter-active'
+                defaultChecked={filter && filter.active}
+                value={true}
+            />
+            <label htmlFor='todo-filter-active'>Active</label>
+            <input
+                type='radio'
+                name='todo-filter'
+                id='todo-filter-completed'
+                defaultChecked={filter && !filter.active}
+                value={false}
+            />
+            <label htmlFor='todo-filter-completed'>Completed</label>
+        </div>
+    );
 
     return (
-        <div className='todos-container'>
-            <div>
+        <div className='todos-page-container'>
+            <Button
+                children='Logout'
+                onClick={handleLogout}
+                className='todos__logout-btn'
+            />
+            <div className='todos__title-container'>
                 <h1>TODO</h1>
-                <Button
-                    children={<img src={sun} alt='Switch theme' />}
-                    onClick={toggleTheme}
-                />
+                <ToggleThemeButton />
             </div>
-            <div>
+            <div className='todos__new-todo-container box-shadow'>
                 <input
                     onChange={handleActiveNewTodo}
                     type='checkbox'
                     checked={!newTodoActive}
+                    id='new-todo'
                 />
+                <label htmlFor='new-todo' className='todo__label'>
+                    {!newTodoActive && <img src={check} alt='Checked todo' />}
+                </label>
                 <TextInput
                     textInputRef={newTodoRef}
                     placeholder={'Create a new todo...'}
                     handleKeyPress={handleKeyPressNewTodo}
                 />
             </div>
-            <main>
+            <main className='todos__container box-shadow'>
                 {todos &&
                     todos.map(todo => (
                         <Todo
@@ -137,36 +181,19 @@ export default function Todos() {
                     ))}
                 <div className='todos__interaction'>
                     <div>{itemsLeft}</div>
-                    <div onChange={handleFilter}>
-                        <input
-                            type='radio'
-                            name='todo-filter'
-                            id='todo-filter-all'
-                            defaultChecked
-                            value=''
-                        />
-                        <label htmlFor='todo-filter-all'>All</label>
-                        <input
-                            type='radio'
-                            name='todo-filter'
-                            id='todo-filter-active'
-                            value={true}
-                        />
-                        <label htmlFor='todo-filter-active'>Active</label>
-                        <input
-                            type='radio'
-                            name='todo-filter'
-                            id='todo-filter-completed'
-                            value={false}
-                        />
-                        <label htmlFor='todo-filter-completed'>Completed</label>
-                    </div>
+                    {isDesktop && <FilterSelector />}
                     <Button
                         children={'Clear completed'}
                         onClick={handleClearCompleted}
+                        className='todos__clear-btn'
                     />
                 </div>
             </main>
+            {!isDesktop && (
+                <FilterSelector
+                    className={`todos__filter-selector--mobile box-shadow`}
+                />
+            )}
         </div>
     );
 }

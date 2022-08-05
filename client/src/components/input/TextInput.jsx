@@ -7,6 +7,7 @@ export default function TextInput({
     className,
     handleKeyPress,
     type,
+    ...rest
 }) {
     return (
         <input
@@ -15,6 +16,9 @@ export default function TextInput({
             placeholder={placeholder}
             onKeyDownCapture={handleKeyPress}
             type={type}
+            {...rest}
+            autoCorrect='off'
+            autoCapitalize='none'
         >
             {children}
         </input>

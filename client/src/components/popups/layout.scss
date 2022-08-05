@@ -1,0 +1,26 @@
+.error-form {
+    display: none;
+    background-color: rgba(255, 0, 0, 0.4);
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+
+@keyframes slide-in-error-form {
+    0% {
+        transform: translateY(-100%) scale(0);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-out-error-form {
+    100% {
+        transform: translateY(-100%) scale(0);
+    }
+
+    0% {
+        transform: translateY(0) scale(1);
+    }
+}

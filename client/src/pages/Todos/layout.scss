@@ -1,0 +1,110 @@
+.todos-page-container {
+    max-width: var(--max-container-width);
+    margin: auto;
+    padding-block: 3em;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    gap: 2em;
+}
+
+.todos {
+    &__title-container {
+        display: flex;
+        justify-content: space-between;
+        color: white;
+
+        h1 {
+            letter-spacing: 0.5em;
+        }
+    }
+
+    &__new-todo-container {
+        background-color: var(--bg-todos);
+        padding: 1em;
+        display: flex;
+        gap: 1em;
+        border-radius: 0.5em;
+
+        label {
+            flex-shrink: 0;
+        }
+
+        input {
+            background: none;
+            border: none;
+            flex-basis: 100%;
+            font-size: 1rem;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    &__container {
+        background-color: var(--bg-todos);
+        color: var(--txt-clr);
+        border-radius: 0.5em;
+    }
+
+    &__interaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em;
+        color: var(--clr-todos-interaction);
+        font-size: 0.875rem;
+
+        button:hover {
+            color: var(--clr-todos-interaction-hover);
+        }
+    }
+
+    &__filter-selector {
+        display: flex;
+        gap: 1em;
+
+        label {
+            cursor: pointer;
+            padding: 0.25em 0.5em;
+        }
+
+        label:hover {
+            color: var(--clr-todos-interaction-hover);
+        }
+
+        input:checked + label {
+            color: var(--clr-main-blue);
+        }
+
+        &--mobile {
+            border-radius: 0.5em;
+            background-color: var(--bg-todos);
+            padding: 0.5em 1em;
+            justify-content: center;
+            width: fit-content;
+            margin-inline: auto;
+        }
+    }
+
+    &__clear-btn {
+        font-size: inherit;
+    }
+
+    &__logout-btn {
+        --opacity: 0.3;
+        font-size: 1.25rem;
+        margin-left: auto;
+        max-width: fit-content;
+        background-color: rgba(255, 0, 0, var(--opacity));
+        padding: 0.25em 0.5em;
+        border-radius: 0.25em;
+        transition: background-color ease 150ms;
+        color: white;
+
+        &:hover {
+            --opacity: 0.5;
+        }
+    }
+}

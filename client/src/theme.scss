@@ -1,0 +1,45 @@
+.light {
+    --bg-todos: white;
+    --bg-body: #fafafa;
+    --bg-form: rgba(0, 0, 0, 0.1);
+    --txt-clr: hsl(240, 8%, 23%);
+    --clr-completed: hsl(252, 7%, 86%);
+    --clr-todos-interaction: rgb(150, 150, 170);
+    --clr-todos-interaction-hover: rgb(65, 65, 65);
+    --clr-focus: blue;
+    background-color: var(--bg-body);
+    background-image: url('./assets/images/bg-desktop-light.jpg');
+
+    @media (max-width: 900px) {
+        background-image: url('./assets/images/bg-mobile-light.jpg');
+    }
+
+    hr {
+        border-color: #ddd;
+        height: 1px;
+        margin: 0;
+    }
+}
+
+.dark {
+    --bg-todos: rgb(37, 39, 60);
+    --bg-body: hsl(240, 22%, 10%);
+    --bg-form: rgba(37, 39, 60, 0.5);
+    --txt-clr: #ddd;
+    --clr-completed: hsl(235, 13%, 34%);
+    --clr-todos-interaction: rgb(95, 95, 115);
+    --clr-todos-interaction-hover: white;
+    --clr-focus: rgba(0, 120, 255, 1);
+    background-color: var(--bg-body);
+    background-image: url('./assets/images/bg-desktop-dark.jpg');
+
+    @media (max-width: 900px) {
+        background-image: url('./assets/images/bg-mobile-dark.jpg');
+    }
+
+    hr {
+        border-color: #aaa;
+        height: 1px;
+        margin: 0;
+    }
+}
