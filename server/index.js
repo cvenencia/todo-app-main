@@ -25,4 +25,4 @@ app.use('/user', login);
 app.use('/todo', todo);
 
 connect();
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
