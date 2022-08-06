@@ -65,7 +65,7 @@ export default function Register() {
     };
 
     useEffect(() => {
-        if (login === 'SUCCESS') navigate('/');
+        if (login === 'SUCCESS') navigate(process.env.REACT_APP_GH_PAGES + '/');
     }, [login, navigate]);
 
     useEffect(() => {
@@ -104,7 +104,10 @@ export default function Register() {
             />
             <ErrorForm errorRef={errorRef} message={errorMessage} />
             <span>
-                Already have an account? <Link to='/login'>Login</Link>
+                Already have an account?{' '}
+                <Link to={process.env.REACT_APP_GH_PAGES + '/login'}>
+                    Login
+                </Link>
             </span>
         </div>
     );

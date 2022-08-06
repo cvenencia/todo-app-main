@@ -17,7 +17,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [
@@ -39,7 +40,9 @@
     },
     "devDependencies": {
         "dotenv": "^16.0.1",
+        "gh-pages": "^4.0.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0"
-    }
+    },
+    "homepage": "https://cvenencia.github.io/todo-app-main"
 }

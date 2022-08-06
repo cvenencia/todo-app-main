@@ -42,6 +42,8 @@ export default function App() {
         return () => window.removeEventListener('resize', updateMedia);
     });
 
+    console.log(process.env.REACT_APP_GH_PAGES);
+
     return (
         <div
             className={`app-container ${theme}`}
@@ -52,9 +54,11 @@ export default function App() {
             >
                 <BrowserRouter>
                     <Routes>
-                        <Route exact path='/' element={<Todos />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
+                        <Route path={process.env.REACT_APP_GH_PAGES}>
+                            <Route path='' element={<Todos />} />
+                            <Route path='login' element={<Login />} />
+                            <Route path='register' element={<Register />} />
+                        </Route>
                     </Routes>
                 </BrowserRouter>
             </AppContext.Provider>

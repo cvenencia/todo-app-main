@@ -87,11 +87,12 @@ export default function Todos() {
         setLogin('FAIL');
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
-        navigate('/login');
+        navigate(process.env.REACT_APP_GH_PAGES + '/login');
     };
 
     useEffect(() => {
-        if (login === 'FAIL') return navigate('/register');
+        if (login === 'FAIL')
+            return navigate(process.env.REACT_APP_GH_PAGES + '/register');
 
         (async () => {
             return await getTodos();
