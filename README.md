@@ -5,18 +5,17 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 ## Table of contents
 
 -   [Overview](#overview)
+    -   [Screenshots](#screenshots)
     -   [The challenge](#the-challenge)
-    -   [Screenshot](#screenshot)
-    -   [Links](#links)
--   [My process](#my-process)
     -   [Built with](#built-with)
-    -   [What I learned](#what-i-learned)
-    -   [Continued development](#continued-development)
-    -   [Useful resources](#useful-resources)
--   [Author](#author)
--   [Acknowledgments](#acknowledgments)
+    -   [Links](#links)
 
 ## Overview
+
+### Screenshots
+
+![](./screenshot-light.png)
+![](./screenshot-dark.png)
 
 ### The challenge
 
@@ -32,20 +31,13 @@ Users should be able to:
 -   Clear all completed todos
 -   Toggle light and dark mode
 
-### Screenshots
+### Built with
 
-![](./screenshot-light.png)
-![](./screenshot-dark.png)
+-   Front-end: React.
+-   Back-end: Express and MongoDB.
 
 ### Links
 
 -   Live Site URL: [Github Pages](https://cvenencia.github.io/todo-app-main)
 -   API URL: [Heroku](https://cvenencia-todo-app.herokuapp.com)
 -   Database hosting: [MongoDB Atlas](https://www.mongodb.com/es/atlas/database)
-
-## My process
-
-### Built with
-
--   Front-end: React.
--   Back-end: Express and MongoDB.
