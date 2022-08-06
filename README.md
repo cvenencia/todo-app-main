@@ -22,6 +22,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 Users should be able to:
 
 -   **(Extra)** Register and login with username and password
+-   **(Extra)** Maintain user session on reload
 -   View the optimal layout for the app depending on their device's screen size
 -   See hover states for all interactive elements on the page
 -   Add new todos to the list
@@ -30,6 +31,7 @@ Users should be able to:
 -   Filter by all/active/complete todos
 -   Clear all completed todos
 -   Toggle light and dark mode
+-   **(Extra)** Maintain theme preference on reload
 
 ### Built with
 
