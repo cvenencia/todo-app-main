@@ -27,8 +27,6 @@ export default function Login() {
             return setLogin('SUCCESS');
         }
 
-        console.log(response);
-
         setLogin('FAIL');
         animateError();
     };

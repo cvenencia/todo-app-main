@@ -42,8 +42,6 @@ export default function App() {
         return () => window.removeEventListener('resize', updateMedia);
     });
 
-    console.log(process.env.REACT_APP_GH_PAGES);
-
     return (
         <div
             className={`app-container ${theme}`}
