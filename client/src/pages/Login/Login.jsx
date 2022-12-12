@@ -56,7 +56,7 @@ export default function Login() {
     };
 
     useEffect(() => {
-        if (login === 'SUCCESS') navigate(process.env.REACT_APP_GH_PAGES + '/');
+        if (login === 'SUCCESS') navigate('/');
     }, [login, navigate]);
 
     useEffect(() => {
@@ -87,10 +87,7 @@ export default function Login() {
             />
             <ErrorForm errorRef={errorRef} message={'Invalid credentials.'} />
             <span>
-                Don't have an account?{' '}
-                <Link to={process.env.REACT_APP_GH_PAGES + '/register'}>
-                    Register
-                </Link>
+                Don't have an account? <Link to={'/register'}>Register</Link>
             </span>
         </div>
     );

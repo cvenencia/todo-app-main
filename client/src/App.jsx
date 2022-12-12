@@ -52,7 +52,7 @@ export default function App() {
             >
                 <BrowserRouter>
                     <Routes>
-                        <Route path={process.env.REACT_APP_GH_PAGES}>
+                        <Route path={'/'}>
                             <Route path='' element={<Todos />} />
                             <Route path='login' element={<Login />} />
                             <Route path='register' element={<Register />} />
