@@ -40,6 +40,6 @@ Users should be able to:
 
 ### Links
 
--   Live Site URL: [Netlify](https://beautiful-pavlova-f78d84.netlify.app/)
--   API URL: [Render](https://todo-app-main.onrender.com)
+-   Live Site URL: [Netlify](https://todo-app.cvenencia.com)
+-   API URL: [GC Run](https://backend.todo-app.cvenencia.com)
 -   Database hosting: [MongoDB Atlas](https://www.mongodb.com/es/atlas/database)

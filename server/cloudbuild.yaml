@@ -38,15 +38,15 @@ steps:
       - '--concurrency=40'
       - '--timeout=5s'
       - '--cpu=1'
-      - '--memory=128Mi'
+      - '--memory=256Mi'
       - '--service-account=$_SERVICE_ACCOUNT'
 
       - "--set-env-vars=\
-        TOKEN_EXPIRATION_TIME=5s\
+        TOKEN_EXPIRATION_TIME=3600s\
         "
 
       - "--set-secrets=\
-        VARIABLES=TODO_APP_VARIABLES:latest,\
+        VARIABLES=TODO_APP_VARIABLES:latest\
         "
 
 options:
