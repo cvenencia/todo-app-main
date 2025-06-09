@@ -1,0 +1,53 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    dir: 'server'
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/$_APP_NAME:$SHORT_SHA
+      - -t
+      - gcr.io/$PROJECT_ID/$_APP_NAME:latest
+      - .
+
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/$_APP_NAME'
+
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - run
+      - deploy
+      - $_APP_NAME
+
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/$_APP_NAME:latest'
+      - '--port'
+      - '3000'
+
+      - '--region'
+      - $_REGION
+
+      - '--platform'
+      - managed
+
+      - '--allow-unauthenticated'
+
+      - '--min-instances=0'
+      - '--max-instances=1'
+      - '--concurrency=40'
+      - '--timeout=5s'
+      - '--cpu=1'
+      - '--memory=128Mi'
+      - '--service-account=$_SERVICE_ACCOUNT'
+
+      - "--set-env-vars=\
+        TOKEN_EXPIRATION_TIME=5s\
+        "
+
+      - "--set-secrets=\
+        VARIABLES=TODO_APP_VARIABLES:latest,\
+        "
+
+options:
+  logging: CLOUD_LOGGING_ONLY
